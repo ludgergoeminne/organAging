@@ -10,6 +10,8 @@ This repository contains the following main folders:
 
 - `data`: this folder contains all intermediary data files, as long as they can be made publicly available (i.e. they do not contain individual-level UK Biobank data).
 
+If you are trying to understand the folder structure or want to understand what a specific file refers to, we suggest to inspect the file `scripts/0_Setup.R`.
+
 ## How to reproduce our results
 
 All analyses (except for model training, which was done in Python) were done in R, running in RStudio. If you want to reproduce our analysis, you will need an installation of R (https://www.r-project.org) and possibly RStudio (https://www.rstudio.com/products/rstudio/download/). Next, download this project to your computer.
