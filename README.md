@@ -1,6 +1,6 @@
 # Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems
 
-This repository accompanies our Cell Metabolism manuscript "Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems". The repository contains all required code to reproduce the analyses for our pulication which is under revision at *Cell Metabolism*, but for which a preprint is available on *medRxiv* (see https://doi.org/10.1101/2024.04.08.24305469).
+This repository accompanies our manuscript "Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems". The repository contains all required code to reproduce the analyses for our pulication which is under revision at *Cell Metabolism*, but for which a preprint is available on *medRxiv* (see https://doi.org/10.1101/2024.04.08.24305469).
 
 ## Overview of the repository
 
