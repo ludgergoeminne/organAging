@@ -88,6 +88,6 @@ If anything is unclear or does not work, please do not hesitate to contact lgoem
 
 ## Citation
 
-If you make use of the functions in this repository, please refer to: 
+If you make use of anything in this repository, we kindly request to make a reference to: 
 
 Ludger J.E. Goeminne, Alec Eames, Alexander Tyshkovskiy, M. Austin Argentieri, Kejun Ying, Mahdi Moqri, Vadim N. Gladyshev (2024). **Plasma-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems**. *medRxiv*. doi: https://doi.org/10.1101/2024.04.08.24305469.
