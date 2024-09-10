@@ -1,0 +1,46 @@
+Adipose
+Best l1_ratio 1.0
+Adrenal
+Best l1_ratio 0.0
+Artery
+Best l1_ratio 1.0
+Brain
+Best l1_ratio 1.0
+Esophagus
+Best l1_ratio 1.0
+Female
+Best l1_ratio 1.0
+Heart
+Best l1_ratio 1.0
+Immune
+Best l1_ratio 1.0
+Intestine
+Best l1_ratio 1.0
+Kidney
+Best l1_ratio 1.0
+Liver
+Best l1_ratio 1.0
+Lung
+Best l1_ratio 1.0
+Male
+Best l1_ratio 1.0
+Muscle
+Best l1_ratio 1.0
+Pancreas
+Best l1_ratio 0.0
+Pituitary
+Best l1_ratio 1.0
+Salivary
+Best l1_ratio 1.0
+Skin
+Best l1_ratio 1.0
+Stomach
+Best l1_ratio 0.0
+Thyroid
+Best l1_ratio 0.0
+Organismal
+Best l1_ratio 0.4
+Multi-organ
+Best l1_ratio 1.0
+Conventional
+Best l1_ratio 0.2

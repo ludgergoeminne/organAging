@@ -1,0 +1,69 @@
+Adipose
+Best alpha [0.0019955205214684116]
+Best l1_ratio 1.0
+Adrenal
+Best alpha [0.019289047323906044]
+Best l1_ratio 0.5
+Artery
+Best alpha [0.0009175564726011919]
+Best l1_ratio 1.0
+Brain
+Best alpha [0.0017286046205331877]
+Best l1_ratio 0.5
+Esophagus
+Best alpha [0.00028614463182656584]
+Best l1_ratio 0.5
+Female
+Best alpha [8.899643136722344e-05]
+Best l1_ratio 0.5
+Heart
+Best alpha [0.0002970267447797018]
+Best l1_ratio 1.0
+Immune
+Best alpha [0.0007767232661035802]
+Best l1_ratio 0.5
+Intestine
+Best alpha [0.0006978338810803957]
+Best l1_ratio 0.5
+Kidney
+Best alpha [0.0014002238051275327]
+Best l1_ratio 1.0
+Liver
+Best alpha [5.207039961542006e-05]
+Best l1_ratio 0.5
+Lung
+Best alpha [0.004257448949553741]
+Best l1_ratio 0.5
+Male
+Best alpha [0.001105076203139006]
+Best l1_ratio 1.0
+Muscle
+Best alpha [0.001208729804683506]
+Best l1_ratio 1.0
+Pancreas
+Best alpha [0.0008347349891077932]
+Best l1_ratio 0.5
+Pituitary
+Best alpha [0.0002676804067180902]
+Best l1_ratio 1.0
+Salivary
+Best alpha [0.0008691546464372943]
+Best l1_ratio 1.0
+Skin
+Best alpha [0.0014393936269287966]
+Best l1_ratio 0.5
+Stomach
+Best alpha [0.006504516860373457]
+Best l1_ratio 0.5
+Thyroid
+Best alpha [0.022778512335616594]
+Best l1_ratio 0.5
+Organismal
+Best alpha [0.0039093810516363575]
+Best l1_ratio 0.5
+Multi-organ
+Best alpha [0.0019459070265621609]
+Best l1_ratio 1.0
+Conventional
+Best alpha [0.004717812282569595]
+Best l1_ratio 0.5
