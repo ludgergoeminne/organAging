@@ -11,7 +11,7 @@ organ.proteins <- readRDS(file = paste0(rds.dir, "organ_proteins.rds"))
 ### This comes from Plot_Barplots_Correlations.R ###
 organ.proteins.selected <- readRDS(file = paste0(rds.dir, "organ_proteins_selected.rds"))
 
-# Import PhenoAge and LocoAge
+# Import PhenoAge and Locomotor Age
 tmp <- read.csv(file = paste0(external.models.dir, phenoage.file), header = TRUE, quote = "")
 PhenoAge <- tmp$PhenoAge
 names(PhenoAge) <- as.character(tmp$UID)
@@ -98,6 +98,17 @@ heatmap.corr.organs <- lapply(heatmap.corr.organs, function(x){
   names(x) <- names(res.df.organ.list[[1]])
   return(x)
 } )
+
+
+### Change "LocoAge" to "Locomotor age"
+res.df.organ.list <- lapply(res.df.organ.list, function(x){
+  x <- lapply(x, function(y){
+    y[y$trait.x == "LocoAge", "trait.x"] <- "Locomotor age"
+    y[y$trait.y == "LocoAge", "trait.y"] <- "Locomotor age"
+    return(y)
+  })
+  return(x)
+})
 
 for(g in 1:length(res.df.organ.list)){
   for(j in 1:length(res.df.organ.list[[g]])){
