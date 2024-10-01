@@ -50,7 +50,7 @@ The best approach depends on the type of data you are using.
 ### 1. Olink Explore 3072 data
 
 When using data obtained with the Olink Explore 3072 platform, we suggest to use our full models.
-The coefficients for these models can be found in Supp. Table 1A (for the 1st-generation models, which were trained to predict chronological age) and in Supp. Table 1C (for the mortality-based models, which were trained to predict time to death).
+The coefficients for these models can be found in Table S1A (for the 1st-generation models, which were trained to predict chronological age) and in Table S1C (for the mortality-based models, which were trained to predict time to death).
 In principle, the coefficients from any of the five folds can be used, but we suggest to always simply use the first fold (unless you work with the same UK Biobank data, in which case you will have some theoretical potential for overfitting, although in practice, the out-of-fold predictions are very similar to the in-fold predictions).
 Then simply multiply the coefficients with the corresponding Olink NPX-normalized intensities and sum them up.
 For the 1st-generation models, add the intercept to this value.
@@ -59,14 +59,14 @@ The result will be the predicted biological age or the predicted relative log(mo
 ### 2. Olink Explore 1536 data
 
 When using data obtained with the less extensive Olink Explore 1536 platform, we suggest to use our feature-reduced models, as these models were specifically trained on the data from this platform.
-The coefficients for these models can be found in Supp. Table 6A (for the 1st-generation models) and in Supp. Table 6C (for the mortality-based models).
+The coefficients for these models can be found in Table S5A (for the 1st-generation models) and in Table S5C (for the mortality-based models).
 Then apply the same procedure as described above.
 
 ### 3. Other data types
 
 If you are using a different Olink platform, you should assess which of both aforementioned platforms most closely resembles your data.
 
-If you are using protein-level non-Olink data (e.g. SomaLogic data, Alamar data, mass spectrometry-based proteomics data, ...), we suggest to transform the data so that its distribution is more or less symmetrical (e.g. by log-transforming raw intensity values). Then, for each protein, subtract the mean and divide by the standard deviation. Then multiply these values with the standard deviations from the Olink NPX normalized values for either the full models or the feature-reduced models, as given in Supp. Table 3.
+If you are using protein-level non-Olink data (e.g. SomaLogic data, Alamar data, mass spectrometry-based proteomics data, ...), we suggest to transform the data so that its distribution is more or less symmetrical (e.g. by log-transforming raw intensity values). Then, for each protein, subtract the mean and divide by the standard deviation. Then multiply these values with the standard deviations from the Olink NPX normalized values for either the full models or the feature-reduced models, as given in Table S3.
 
 ### What about missing values?
 
