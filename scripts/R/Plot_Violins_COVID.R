@@ -82,7 +82,7 @@ names(coefficients.longitudinal.gen2.COVID) <- names(coefficients.longitudinal$g
 for(k in 1:length(coefficients.longitudinal$gen2)){
   
   if(!(names(coefficients.longitudinal$gen2)[k] %in% c("Bladder", "Thyroid"))){
-
+    
     coef.tmp <- coefficients.longitudinal$gen2[[k]]
     coefficients.longitudinal.gen2.COVID[[k]] <- coef.tmp[names(coef.tmp) %in% colnames(Olink_Proteomics.COVID), drop = FALSE]
     coef.tmp <- coefficients.longitudinal.gen2.COVID[[k]][coefficients.longitudinal.gen2.COVID[[k]] != 0]
@@ -201,23 +201,23 @@ for(m in 1:length(violin.plots.COVID)){
           ylab(ylab) +
           theme_bw() +
           theme(legend.title = element_text(size = 12), # legend title size
-            legend.text = element_text(size = 12), # legend text size
-            legend.position = "none", # No legend
-            panel.border = element_blank(),
-            panel.background = element_blank(),
-            plot.title = element_text(size = 12),
-            strip.text.x = element_text(size = 12), # the size of the facet labels
-            axis.title.x = element_text(size = 12, color = "black"), # grey color: "#808080"
-            axis.title.y = element_text(size = 12, color = "black"),
-            axis.text.x = element_text(size = 12, color = "black"),
-            axis.text.y = element_text(size = 12, color = "black"),
-            axis.line.x = element_line(color="black", linewidth = 0.5),
-            axis.line.y = element_line(color="black", linewidth = 0.5),
-            axis.ticks.x = element_blank(), # element_line(color="black", linewidth = 0.5),
-            axis.ticks.y = element_line(color="black", linewidth = 0.5),
-            strip.background = element_blank(),
-            panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank())
+                legend.text = element_text(size = 12), # legend text size
+                legend.position = "none", # No legend
+                panel.border = element_blank(),
+                panel.background = element_blank(),
+                plot.title = element_text(size = 12),
+                strip.text.x = element_text(size = 12), # the size of the facet labels
+                axis.title.x = element_text(size = 12, color = "black"), # grey color: "#808080"
+                axis.title.y = element_text(size = 12, color = "black"),
+                axis.text.x = element_text(size = 12, color = "black"),
+                axis.text.y = element_text(size = 12, color = "black"),
+                axis.line.x = element_line(color="black", linewidth = 0.5),
+                axis.line.y = element_line(color="black", linewidth = 0.5),
+                axis.ticks.x = element_blank(), # element_line(color="black", linewidth = 0.5),
+                axis.ticks.y = element_line(color="black", linewidth = 0.5),
+                strip.background = element_blank(),
+                panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())
       ))
       tmp <- df.0[, c("predictor", "outcome")]
       colnames(tmp) <- c(xlab, ylab)
@@ -237,6 +237,10 @@ table(df.COVID.list[[k]][df.COVID.list[[k]]$Day == 0, "COVID"])
 
 ### Statistics COVID status ###
 
+predictor <- "COVID"
+conversion <- c(1,2)
+names(conversion) <- c("Neg.", "Pos.")
+outcome <- "resid.ages"
 df.0 <- df.COVID.list[["Conventional"]][df.COVID.list[["Conventional"]]$Day == 0,]
 df.0$COVID <- df.0$COVID+1 # Needs to be in 1,2 format, not 0,1
 df.0$Acuity.max <- 6-df.0$Acuity.max # Needs to go from 1 to 5, not 5 to 1
@@ -261,6 +265,10 @@ t.test(resid.ages ~ COVID, data = df.0, var.equal = TRUE)
 
 ### Statistics association with age ###
 
+predictor <- "Age.cat"
+conversion <- 1:5
+names(conversion) <- c("20-34", "36-49", "50-64", "65-79", "80+")
+outcome <- "predicted.ages"
 df.0 <- df.COVID.list[["Conventional"]][df.COVID.list[["Conventional"]]$Day == 0,]
 df.0$COVID <- df.0$COVID+1 # Needs to be in 1,2 format, not 0,1
 df.0$Acuity.max <- 6-df.0$Acuity.max # Needs to go from 1 to 5, not 5 to 1
@@ -313,6 +321,10 @@ summary(lm(predicted.ages ~ age.numeric, data = df.0))
 
 ### Statistics association with acuity ###
 
+predictor <- "Acuity.max"
+conversion <- 1:5
+names(conversion) <- c("Discharged", "Hospitalized - O2", "Hospitalized + O2", "Intubated/ventilated", "Death")
+outcome <- "resid.ages"
 pvals <- rep(NA, length(organ.proteins.selected))
 names(pvals) <- names(organ.proteins.selected)
 

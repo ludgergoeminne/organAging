@@ -1,5 +1,34 @@
 
-### TODO: add script Alex here
+# This comes from Plot_Volcanos_GSEA.R
+res.age <- readRDS(file <- paste0(rds.dir, "res_age.rds"))
+res.mortality <- readRDS(file <- paste0(rds.dir, "res_mortality.rds"))
+
+# Load the necessary functions
+source(paste(scripts.dir, "FUN.make_matrix_from_list.R", sep = ""))
+source(paste(scripts.dir, "FUN.Ranked_list_obtain.R", sep = ""))
+source(paste(scripts.dir, "FUN.Run_functional_GSEA_from_matrix.R", sep = ""))
+
+### 1. Prepare everything ###
+tmp.res.age <- res.age
+tmp.res.mortality <- res.mortality
+rownames(tmp.res.age) <- tmp.res.age$protein
+rownames(tmp.res.mortality) <- tmp.res.mortality$protein
+tmp.res.age$Slope <- tmp.res.age$Estimate
+tmp.res.age$P.Value <- tmp.res.age$`Pr(>|t|)`
+tmp.res.mortality$Slope <- tmp.res.mortality$coef
+tmp.res.mortality$P.Value <- tmp.res.mortality$`Pr(>|z|)`
+biomarkers_proteins <- list(Chronoage = tmp.res.age,
+                            Hazard = tmp.res.mortality)
+
+### 2. Calculate the correlation across gene signatures ###
+
+logFC_table <- make_matrix_from_list(biomarkers_proteins, "Slope")
+pvalue_table <- make_matrix_from_list(biomarkers_proteins, "P.Value")
+cor_matrix <- corr.test(logFC_table,method = "spearman", adjust = "BH")
+cor_padjusted <- cor_matrix$p
+cor_padjusted[upper.tri(cor_padjusted)] <- cor_padjusted[lower.tri(cor_padjusted)] = p.adjust(cor_padjusted[upper.tri(cor_padjusted)],"BH")
+correlation.table.genes <- list(Rho = cor_matrix$r,P.Value = cor_matrix$p,
+                                P.Adjusted = cor_padjusted)
 
 # saveRDS(correlation.table.genes, file = paste0(rds.dir, "Correlation_table_genes.rds"))
 correlation.table.genes <- readRDS(file = paste0(rds.dir, "Correlation_table_genes.rds"))
@@ -16,6 +45,22 @@ for(i in 1:length(correlation.table.genes)){
   }
 }
 
+### 3. Do the functional enrichment ###
+
+pvalue_table[pvalue_table == 0] <- min(pvalue_table[pvalue_table != 0],na.rm = TRUE)
+
+gsea_matrix <- Run_functional_GSEA_from_matrix(logFC_table,pvalue_table,
+                                               function_path = getwd(),
+                                               species = "Homo sapiens",convert_to_symbol = FALSE,
+                                               with_hallmarks = TRUE, multilevel = TRUE,
+                                               n_permutations = 10000)
+# Correlation of NES
+cor_matrix <- corr.test(gsea_matrix$NES,method = "spearman", adjust = "BH")
+cor_padjusted <- cor_matrix$p
+cor_padjusted[upper.tri(cor_padjusted)] <- cor_padjusted[lower.tri(cor_padjusted)] = p.adjust(cor_padjusted[upper.tri(cor_padjusted)], "BH")
+correlation.table.functions <- list(Rho=cor_matrix$r, P.Value = cor_matrix$p,
+                                    P.Adjusted = cor_padjusted)
+
 # saveRDS(correlation.table.functions, file = paste0(rds.dir, "Correlation_table_functions.rds"))
 correlation.table.functions <- readRDS(file = paste0(rds.dir, "Correlation_table_functions.rds"))
 
@@ -31,7 +76,7 @@ for(i in 1:length(correlation.table.functions)){
   }
 }
 
-### 1. Plot correlation table genes ###
+### 4. Plot correlation table genes ###
 
 plot.df <- do.call("cbind", unname(correlation.table.genes))
 plot.df$trait.x <- gsub("ChronoAge", "chronological age", plot.df$trait.x)
@@ -118,7 +163,7 @@ attr(heatmap.genes, "data") <- plot.df
 
 plot(heatmap.genes)
 
-### 2. Plot correlation table functions ###
+### 5. Plot correlation table functions ###
 
 plot.df <- do.call("cbind", unname(correlation.table.functions))
 plot.df$trait.x <- gsub("ChronoAge", "chronological age", plot.df$trait.x)

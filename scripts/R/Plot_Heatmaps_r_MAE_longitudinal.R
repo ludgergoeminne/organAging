@@ -1,4 +1,7 @@
 
+### This comes from 2_Prepare_Longitudinal_Data.R ###
+olink_bd_annotation_list <- readRDS(file = paste0(rds.dir, "olink_bd_annotation_list.rds"))
+
 ### This comes from 3_Process_GTEx.R ###
 organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
 

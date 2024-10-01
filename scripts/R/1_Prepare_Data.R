@@ -37,7 +37,7 @@ olink_data_unfiltered_0 <- readRDS(file = paste0(rds.dir, "olink_data_unfiltered
 olink_data_0 <- readRDS(file = paste0(rds.dir, "olink_data_0.rds"))
 
 # saveRDS(sds, file = paste0(rds.dir, "standard_deviations.rds"))
-sds <- readRDS(file = "standard_deviations.rds")
+sds <- readRDS(file = paste0(rds.dir, "standard_deviations.rds"))
 
 # if you intend to perform GTEx tissue specificity analysis, store coding separately
 coding143 <- get_olink_coding(paste0(input.coding.dir, "coding143.tsv"))

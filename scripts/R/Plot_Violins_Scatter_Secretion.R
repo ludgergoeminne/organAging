@@ -338,10 +338,10 @@ attr(corrplot.nonsecreted, "data") <- plot.df
 
 plot(corrplot.nonsecreted)
 
-summary(lm(localization.df[!localization.df$secreted,"zval.age"] ~ localization.df[!localization.df$secreted,"zval.mortality"]))$r.squared
-# r² = 0.11
-summary(lm(localization.df[localization.df$secreted,"zval.age"] ~ localization.df[localization.df$secreted,"zval.mortality"]))$r.squared
-# r² = 0.27
+sqrt(summary(lm(localization.df[localization.df$secreted,"zval.age"] ~ localization.df[localization.df$secreted,"zval.mortality"]))$r.squared)
+# r = 0.52
+sqrt(summary(lm(localization.df[!localization.df$secreted,"zval.age"] ~ localization.df[!localization.df$secreted,"zval.mortality"]))$r.squared)
+# r = 0.34
 
 ### 2. Secreted proteins ###
 

@@ -163,9 +163,11 @@ plot.df$model.type <- factor(plot.df$model.type, levels = c(
   "GrimAge"
 ))
 
-plot.df$shape <- "Full dataset"
+plot.df$shape <- "Test dataset" # Both Oh et al. and GrimAge were validated in a test dataset: the separate LonGenity cohort for Oh et al., and a separate test set in the Framingham Heart Study for GrimAge
 plot.df$shape[plot.df$set == "Training set"] <- "Training dataset"
 plot.df$shape[plot.df$set == "Test set"] <- "Test dataset"
+
+plot.df$shape <- factor(plot.df$shape, levels = c("Training dataset", "Test dataset"))
 
 lims <- c(0.9, 2.5)
 
@@ -175,6 +177,7 @@ HR.plot.mortality.other.papers <- ggplot_gtable(ggplot_build(
     # facet_grid(~set, scales = "free_y", space="free") +
     scale_color_manual(values = c("#00BFC4", "#F8766D", "darkgreen", "#19196F")) +
     scale_y_continuous(breaks = as.numeric(unique(plot.df$organ)), labels = unique(plot.df$organ)) +
+    scale_shape_manual(values = c(15, 17)) +
     # scale_shape_manual(values=c(22, 24, 25)) +
     # facet_grid(pathway~diet, scales = "free_y", space="free") +
     # scale_fill_gradientn(colours = Heatmap_palette, oob = scales::squish, na.value = 'darkgrey', limits = lims) + # , limits = lims

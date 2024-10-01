@@ -105,6 +105,12 @@ library(nonnest2)
 library(nonnestcox) # https://github.com/thomashielscher/nonnestcox
 library(viridis)
 library(fgsea)
+library(annotate)
+library(org.Mm.eg.db)
+library(org.Hs.eg.db)
+library(data.table)
+library(enrichR)
+library(hypeR)
 
 #Source this helperscript to improve the svg files
 source(paste0(scripts.dir, "Preprocess_SVG_file.R"))

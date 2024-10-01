@@ -14,7 +14,7 @@ organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
 olink_data_list <- readRDS(file = paste0(rds.dir, "olink_data_list.rds"))
 olink_bd_annotation_list <- readRDS(file = paste0(rds.dir, "olink_bd_annotation_list.rds"))
 
-### 1. Calculate for the non-longitudinal models ###
+### 1. Calculate for the full models ###
 
 ### Create a list with 1st- and 2nd-generation age and residual predictions for all organs in training and test datasets ###
 predicted.ages.1 <- vector(mode = "list", length = 2)
@@ -94,7 +94,7 @@ coefficients <- readRDS(file = paste0(rds.dir, "coefficients.rds"))
 # saveRDS(predicted.ages.1, file = paste0(rds.dir, "predicted_ages_1.rds"))
 predicted.ages.1 <- readRDS(file = paste0(rds.dir, "predicted_ages_1.rds"))
 
-### 2. Calculate out-of-fold predictions for the non-longitudinal models ###
+### 2. Calculate out-of-fold predictions for the full models ###
 
 predicted.ages.oof <- vector(mode = "list", length = 2)
 names(predicted.ages.oof) <- c("gen1", "gen2")

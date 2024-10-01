@@ -1,6 +1,9 @@
 
 ### This comes from 4_Calculate_Predicted_Resid_Ages.R ###
-coefficients <- readRDS(file = paste0(rds.dir, "coefficients.rds"))
+coefficients.longitudinal <- readRDS(file = paste0(rds.dir, "coefficients_longitudinal.rds"))
+
+### This comes from Plot_Barplots_Correlations.R ###
+organ.proteins.selected <- readRDS(file = paste0(rds.dir, "organ_proteins_selected.rds"))
 
 dict <- read.table(paste0(input.GSE169148.dir, "dict.tsv"), sep = "\t", header = TRUE, comment.char = "")
 
@@ -13,14 +16,14 @@ any(is.na(dat))
 # FALSE
 # No filtering or imputation needed here!
 
-tmp.list <- vector(mode = "list", length = length(coefficients$gen2))
-names(tmp.list) <- names(coefficients$gen2)
+tmp.list <- vector(mode = "list", length = length(coefficients.longitudinal$gen2))
+names(tmp.list) <- names(coefficients.longitudinal$gen2)
 
 for(k in 1:length(tmp.list)){
-  if(names(tmp.list)[k] != "Bladder"){
-    tmp.list[[k]] <- data.frame(organ = names(coefficients$gen2)[k], 
-                                protein = names(coefficients$gen2[[k]]),
-                                value = coefficients$gen2[[k]])
+  if(!(names(tmp.list)[k] %in% c("Bladder", "Thyroid"))){
+    tmp.list[[k]] <- data.frame(organ = names(coefficients.longitudinal$gen2)[k], 
+                                protein = names(coefficients.longitudinal$gen2[[k]]),
+                                value = coefficients.longitudinal$gen2[[k]])
   }
 }
 
@@ -97,7 +100,7 @@ adjps.selected <- p.adjust(pvals.full[names(organ.proteins.selected)], method = 
 
 adjps.selected
 # Conventional        Brain       Artery        Liver    Intestine       Immune       Kidney         Skin         Lung 
-# 0.185396553  0.922744412  0.243012066  0.660514054  0.158788596  0.001022179  0.922744412  0.922744412  0.016500807 
+# 0.077952537  0.935134158  0.378797765  0.588807934  0.144336660  0.003258034  0.935134158  0.935134158  0.005079618 
 
 ### Be careful, we only correct for organ.proteins.selected!
 ### See line if(names(organ.proteins)[k] %in% organ.proteins.selected)
@@ -134,7 +137,7 @@ for(k in 1:length(violin.plots.GSE169148)){
                                   nudge_y = (max(plot.df$biological_age, na.rm = TRUE) - min(plot.df$biological_age, na.rm = TRUE))/13
     )
     
-    if(names(organ.proteins)[k] %in% organ.proteins.selected){
+    if(names(organ.proteins)[k] %in% names(organ.proteins.selected)){
       significance.df$adjp <- adjps.selected[names(organ.proteins)[k]]
     }
     

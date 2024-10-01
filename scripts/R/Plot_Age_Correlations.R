@@ -8,6 +8,8 @@ organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
 # From 4_calculate_predicted_resid_ages.R
 coefficients <- readRDS(paste0(rds.dir, "coefficients.rds"))
 predicted.ages.1 <- readRDS(file = paste0(rds.dir, "predicted_ages_1.rds"))
+training.eids <- readRDS(file = paste0(rds.dir, "training_eids.rds"))
+test.eids <- readRDS(file = paste0(rds.dir, "test_eids.rds"))
 
 # To export the summarized data to Excel:
 organs.save.xlsx <- c("Conventional", "Artery", "Brain")

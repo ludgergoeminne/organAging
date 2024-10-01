@@ -71,7 +71,7 @@ olink_bd_annotation_list <- readRDS(file = paste0(rds.dir, "olink_bd_annotation_
 olink_data_list <- readRDS(file = paste0(rds.dir, "olink_data_list.rds"))
 
 # saveRDS(sds.longitudinal, file = paste0(rds.dir, "standard_deviations_longitudinal.rds"))
-sds.longitudinal <- readRDS(file = "standard_deviations_longitudinal.rds")
+sds.longitudinal <- readRDS(file = paste0(rds.dir, "standard_deviations_longitudinal.rds"))
 
 # Create, impute and save train-test splits for longitudinal Olink data FIRST visit
 # Required for K-fold validation (python knn is relatively slow compared to R)
