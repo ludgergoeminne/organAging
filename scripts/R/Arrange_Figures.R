@@ -59,10 +59,10 @@ Fig2 <- ggarrange(
             empty.plot,
             ncol = 6, nrow = 1, labels = c(LETTERS[7], "", "", LETTERS[8], "", ""), widths = c(2/90, 38/90, 5/90, 2/90, 38/90, 5/90), font.label = list(size = 17)),
   ggarrange(empty.plot,
-            corrplot.nonsecreted,
-            empty.plot,
-            empty.plot,
             corrplot.secreted,
+            empty.plot,
+            empty.plot,
+            corrplot.nonsecreted,
             empty.plot,
             ncol = 6, nrow = 1, labels = c(LETTERS[9], "", "", LETTERS[10], "", ""), widths = c(2/90, 38/90, 5/90, 2/90, 38/90, 5/90), font.label = list(size = 17)),
   nrow = 5,  # Total number of rows!
