@@ -111,6 +111,7 @@ library(org.Hs.eg.db)
 library(data.table)
 library(enrichR)
 library(hypeR)
+library(ggdendroplot)
 
 #Source this helperscript to improve the svg files
 source(paste0(scripts.dir, "Preprocess_SVG_file.R"))
