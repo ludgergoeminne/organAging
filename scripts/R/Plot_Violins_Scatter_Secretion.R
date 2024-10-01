@@ -263,7 +263,7 @@ violin.secreted.mortality <- ggplot_gtable(ggplot_build(
     geom_segment(aes(x = significance.df$x[1]-0.4, y = significance.df$y[1], xend = significance.df$xend[1], yend = significance.df$y[1])) +
     geom_segment(aes(x = significance.df$x[2]-0.9, y = significance.df$y[2], xend = significance.df$xend[2], yend = significance.df$y[2])) +
     geom_segment(aes(x = significance.df$x[3]-0.4, y = significance.df$y[3], xend = significance.df$xend[3], yend = significance.df$y[3])) +
-
+    
     ggtitle("Mortality adjusted for chronological age and sex") +
     xlab("") + # No label on the horizontal axis
     ylab(paste0("Z value")) +
@@ -309,7 +309,7 @@ corrplot.nonsecreted <- ggplot_gtable(ggplot_build(
   ggplot(plot.df, aes(x = zval.age, y = zval.mortality, color = Significance)) +
     geom_point(cex = 2.5) +
     scale_color_manual(values = alpha(c("black", "#04a3bd", "#f0be3d", "#247d3f"), 0.5)) +
-    ggtitle(paste0("Non-secreted proteins (r² = ", round(summary(lm(plot.df[!plot.df$secreted,"zval.age"] ~ plot.df[!plot.df$secreted,"zval.mortality"]))$r.squared, 2), ")")) +
+    ggtitle(paste0("Non-secreted proteins (r = ", round(sqrt(summary(lm(plot.df[!plot.df$secreted,"zval.age"] ~ plot.df[!plot.df$secreted,"zval.mortality"]))$r.squared), 2), ")")) +
     xlab("Z value chronological age adj. for sex") +
     ylab("Z value mortality adj. for age x sex") +
     xlim(c(-80, 152)) +
@@ -352,7 +352,7 @@ corrplot.secreted <- ggplot_gtable(ggplot_build(
   ggplot(plot.df, aes(x = zval.age, y = zval.mortality, color = Significance)) +
     geom_point(cex = 2.5) +
     scale_color_manual(values = alpha(c("black", "#04a3bd", "#f0be3d", "#247d3f"), 0.5)) +
-    ggtitle(paste0("Secreted proteins (r² = ", round(summary(lm(plot.df[plot.df$secreted,"zval.age"] ~ plot.df[plot.df$secreted,"zval.mortality"]))$r.squared, 2), ")")) +
+    ggtitle(paste0("Secreted proteins (r = ", round(sqrt(summary(lm(plot.df[plot.df$secreted,"zval.age"] ~ plot.df[plot.df$secreted,"zval.mortality"]))$r.squared), 2), ")")) +
     xlab("Z value chronological age adj. for sex") +
     ylab("Z value mortality adj. for age x sex") +
     theme_bw() +
