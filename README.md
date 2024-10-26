@@ -1,6 +1,6 @@
 # Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems
 
-This repository accompanies our manuscript "Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems". The repository contains all required code to reproduce the analyses for our pulication which is accepted for publication at *Cell Metabolism*, but for which a preprint is available on *medRxiv* (see https://doi.org/10.1101/2024.04.08.24305469).
+This repository accompanies our manuscript "Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems". The repository contains all required code to reproduce the analyses for our manuscript in *Cell Metabolism* (available from November 1st, 2024, 11 am EST onwards, see https://doi.org/10.1016/j.cmet.2024.10.005).
 
 ## Overview of the repository
 
@@ -92,4 +92,4 @@ If anything is unclear or does not work, please do not hesitate to contact lgoem
 
 If you make use of anything in this repository, we kindly request to make a reference to: 
 
-Ludger J.E. Goeminne, Alec Eames, Alexander Tyshkovskiy, M. Austin Argentieri, Kejun Ying, Mahdi Moqri, Vadim N. Gladyshev (2024). **Plasma-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems**. *medRxiv*. doi: https://doi.org/10.1101/2024.04.08.24305469.
+Ludger J.E. Goeminne, Anastasiya Vladimirova, Alec Eames, Alexander Tyshkovskiy, M. Austin Argentieri, Kejun Ying, Mahdi Moqri, Vadim N. Gladyshev (2024). **Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems**, *Cell Metabolism*, doi: https://doi.org/10.1016/j.cmet.2024.10.005.
