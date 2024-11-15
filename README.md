@@ -80,7 +80,7 @@ When in doubt, it is probably better not to impute.
 
 ### I would like to express the estimates from mortality-based models in years
 
-The mortality-based models that were trained with Cox elastic net and generate relative log(mortality hazards), which are reported in our manuscript. Converting these values to "years" is relatively straightforward to do, if you are willing to assume a Gomperz distribution for the relationship between aging and mortality. For example, we calculated the coefficients of this Gomperz model for humans on the log scale (with base e) as:
+The mortality-based models that were trained with Cox elastic net and generate relative log(mortality hazards), which are reported in our manuscript. Converting these values to "years" is relatively straightforward to do, if you are willing to assume a Gomperz distribution for the relationship between aging and mortality. For example, we calculated the coefficients of this Gomperz model for humans on the log scale (with base e) as (`R` script):
 ```
 intercept <- -9.94613787413831
 slope <- 0.0897860500778604
