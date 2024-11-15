@@ -78,6 +78,30 @@ One could consider imputing missing values, especially when the dataset is rathe
 This may somewhat improve the performance of the models, but would need to be evaluated on a case-by-case basis.
 When in doubt, it is probably better not to impute.
 
+### I would like to express the estimates from mortality-based models in years
+
+The mortality-based models that were trained with Cox elastic net and generate relative log(mortality hazards), which are reported in our manuscript. Converting these values to "years" is relatively straightforward to do, if you are willing to assume a Gomperz distribution for the relationship between aging and mortality. For example, we calculated the coefficients of this Gomperz model for humans on the log scale (with base e) as:
+```
+intercept <- -9.94613787413831
+slope <- 0.0897860500778604
+```
+
+The relative log(mortality hazard) for the average age (`mean(olink_bd_annotation_0$age_first_visit)`, i.e. `57.29426` years) in our dataset is then calculated as follows in `R`:
+
+```
+avg.rel.log.mort.hazard <- intercept + slope * mean(olink_bd_annotation_0$age_first_visit)
+# -4.801912
+```
+
+In a second step, you can just convert the relative log(mortality hazards) (`predicted.ages.oof$gen2$predicted$Conventional`) to ages (in years) as follows (example for the conventional mortality-based model):
+
+```
+mortality.in.years <- (-avg.rel.log.mort.hazard+unlist(predicted.ages.oof$gen2$predicted$Conventional))/slope - intercept
+# hist(mortality.in.years, breaks = 100)
+```
+
+For the conventional mortality-based model, this results in most biological ages between 40 and 70, as expected, with only a tiny fraction of people (probably those with very severe, deadly diseases) predicted older than 120 years old, based on mortality.
+
 ## Help
 
 If anything is unclear or does not work, please do not hesitate to contact lgoeminne@bwh.harvard.edu or raise an issue on GitHub.
