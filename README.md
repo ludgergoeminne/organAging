@@ -74,7 +74,7 @@ If you are using protein-level non-Olink data (e.g. SomaLogic data, Alamar data,
 
 In our manuscript, we ignored missing values when applying our models to external datasets. 
 However, note that the more proteins are missing (especially those with strong non-zero coefficients), the poorer the performance of our models will be.
-One could consider imputing missing values, especially when the dataset is rather large, and there are not too many missing values for each proteins.
+One could consider imputing missing values, especially when the dataset is rather large, and there are not too many missing values for each protein.
 This may somewhat improve the performance of the models, but would need to be evaluated on a case-by-case basis.
 When in doubt, it is probably better not to impute.
 
