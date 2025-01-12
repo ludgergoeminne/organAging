@@ -118,4 +118,4 @@ If anything is unclear or does not work, please do not hesitate to contact lgoem
 
 If you make use of anything in this repository, we kindly request to make a reference to: 
 
-Ludger J.E. Goeminne, Anastasiya Vladimirova, Alec Eames, Alexander Tyshkovskiy, M. Austin Argentieri, Kejun Ying, Mahdi Moqri, Vadim N. Gladyshev (2025). **Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems**, *Cell Metabolism*, Volume 37, Issue 1, p205-222.e6, doi: https://doi.org/10.1016/j.cmet.2024.10.005.
+Ludger J.E. Goeminne, Anastasiya Vladimirova, Alec Eames, Alexander Tyshkovskiy, M. Austin Argentieri, Kejun Ying, Mahdi Moqri, Vadim N. Gladyshev (2025). **Plasma protein-based organ-specific aging and mortality models unveil diseases as accelerated aging of organismal systems**, *Cell Metabolism*, Volume 37, Issue 1, p205-222.e6, DOI: https://doi.org/10.1016/j.cmet.2024.10.005.
