@@ -9,6 +9,7 @@ test.eids <- readRDS(file = paste0(rds.dir, "test_eids.rds"))
 
 # See also 1_Prepare_Data.R
 general_hazard_outcomes <- get_general_outcomes()
+olink_bd_annotation_0 <- readRDS(file = paste0(rds.dir, "olink_bd_annotation_0.rds"))
 
 ### This comes from 3_Process_GTEx.R ###
 organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
