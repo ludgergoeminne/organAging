@@ -10,6 +10,9 @@ test.eids <- readRDS(file = paste0(rds.dir, "test_eids.rds"))
 # See also 1_Prepare_Data.R
 general_hazard_outcomes <- get_general_outcomes()
 
+### This comes from 3_Process_GTEx.R ###
+organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
+
 HR.list <- vector(mode = "list", length = 2)
 names(HR.list) <- c("gen1", "gen2")
 
