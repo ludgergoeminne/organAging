@@ -7,6 +7,7 @@
 training.eids <- readRDS(file = paste0(rds.dir, "training_eids.rds"))
 test.eids <- readRDS(file = paste0(rds.dir, "test_eids.rds"))
 predicted.ages.1 <- readRDS(file = paste0(rds.dir, "predicted_ages_1.rds"))
+predicted.ages.oof <- readRDS(file = paste0(rds.dir, "predicted_ages_oof.rds"))
 
 # See also 1_Prepare_Data.R
 general_hazard_outcomes <- get_general_outcomes()
