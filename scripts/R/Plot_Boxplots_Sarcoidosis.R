@@ -1,3 +1,5 @@
+### This comes from 3_Process_GTEx.R ###
+organ.proteins <- readRDS(paste0(rds.dir, "organ_proteins.rds"))
 
 ### This comes from 4_Calculate_Predicted_Resid_Ages.R ###
 coefficients.longitudinal <- readRDS(file = paste0(rds.dir, "coefficients_longitudinal.rds"))
