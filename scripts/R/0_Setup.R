@@ -3,7 +3,7 @@
 # Specify your working directory
 wd <- "../../"
 # Specify the path where the scripts are saved
-scripts.dir <- paste0(wd, "scripts/")
+scripts.dir <- paste0(wd, "scripts/R/")
 
 # Specify the path where the UK Biobank phenotypic data is located (downloaded from UK Biobank)
 input.UKBB.dir <- paste0(wd, "data/input_UKBB/")
