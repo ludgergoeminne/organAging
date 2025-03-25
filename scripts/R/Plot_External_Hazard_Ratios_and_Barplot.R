@@ -10,7 +10,7 @@ predicted.ages.oof <- readRDS(file = paste0(rds.dir, "predicted_ages_oof.rds"))
 
 ### 1. Barplot r our study vs Oh et al. ###
 
-### 1.1. From Supplementary Table 8 in Oh et al. (https://www.nature.com/articles/s41586-023-06802-1) ###
+### 1.1. From Supplementary Table 8 and Supplementary Table 12 in Oh et al. (https://www.nature.com/articles/s41586-023-06802-1) ###
 Oh_et_al_r <- openxlsx::read.xlsx(paste0(external.models.dir, ST8_Oh_et_al.file))
 Oh_et_al_r <- Oh_et_al_r[, c("organ", "All_r")]
 Oh_et_al_r$`Oh et al. (2023)` <- as.numeric(gsub("\\ \\(.+", "", Oh_et_al_r$All_r))
@@ -83,6 +83,8 @@ plot(barplots.comparison.Oh)
 
 # 1st generation & 2nd generation
 
+# ST12 (effect sizes, etc.) and ST8 (standard deviation in the LonGenity cohort) from https://www.nature.com/articles/s41586-023-06802-1:
+# "Age gaps were z-scored per aging model to account for the differences in model variability (Supplementary Fig. 3f)."
 other.papers.mortality.sumstats <- read.csv(file = paste0(external.models.dir, mortality.sumstats.file), header = TRUE, quote = "")
 
 # From: Supplementary Table 5 in https://www.aging-us.com/article/101684/text
@@ -95,23 +97,28 @@ abs(qnorm(0.05/2))*se
 exp(log(1.12)-abs(qnorm(0.05/2))*se)
 exp(log(1.12)+abs(qnorm(0.05/2))*se)
 
-other.papers.mortality.sumstats <- rbind(other.papers.mortality.sumstats, 
-                                         data.frame(
-                                           organ = c("Conventional"),
-                                           Study = c("GrimAge"),
-                                           beta = log(1.12),
-                                           expbeta = 1.12,
-                                           expci.lb = exp(log(1.12)-abs(qnorm(0.05/2))*se),
-                                           expci.ub = exp(log(1.12)+abs(qnorm(0.05/2))*se),
-                                           pheno_SD = 3.81  # From: Supplementary Table 9 in https://www.aging-us.com/article/101684/text
-                                         ))
 # Has to be GrimAge DNAm because of the 3.81 that is reported for this!
+df.GrimAge <- data.frame(
+  organ = c("Conventional"),
+  Study = c("GrimAge"),
+  beta = log(1.12),
+  expbeta = 1.12,
+  expci.lb = exp(log(1.12)-abs(qnorm(0.05/2))*se),
+  expci.ub = exp(log(1.12)+abs(qnorm(0.05/2))*se),
+  pheno_SD = 3.81  # From: Supplementary Table 9 in https://www.aging-us.com/article/101684/text
+)
+### The models from Oh et al. are already expressed per unit of s.d.!
+# "A standard deviation increase (approximately four years of extra organ aging, Supplementary Table 8) in heart, adipose, liver, pancreas, brain, lung, immune or muscle age gap each conferred between 15–50% increased all-cause mortality risk."
+# "Age gaps were z-scored per aging model to account for the differences in model variability (Supplementary Fig. 3f)."
 
-### Execute only once!!! ###
-other.papers.mortality.sumstats$beta <- other.papers.mortality.sumstats$beta/other.papers.mortality.sumstats$pheno_SD
-other.papers.mortality.sumstats$expbeta <- exp(log(other.papers.mortality.sumstats$expbeta)/other.papers.mortality.sumstats$pheno_SD)
-other.papers.mortality.sumstats$expci.lb <- exp(log(other.papers.mortality.sumstats$expci.lb)/other.papers.mortality.sumstats$pheno_SD)
-other.papers.mortality.sumstats$expci.ub <- exp(log(other.papers.mortality.sumstats$expci.ub)/other.papers.mortality.sumstats$pheno_SD)
+### For GrimAge, what is reported is the hazard ratio associated with a 1 unit increase in the variable!
+df.GrimAge$beta <- df.GrimAge$beta*df.GrimAge$pheno_SD
+df.GrimAge$expbeta <- exp(log(df.GrimAge$expbeta)*df.GrimAge$pheno_SD)
+df.GrimAge$expci.lb <- exp(log(df.GrimAge$expci.lb)*df.GrimAge$pheno_SD)
+df.GrimAge$expci.ub <- exp(log(df.GrimAge$expci.ub)*df.GrimAge$pheno_SD)
+
+other.papers.mortality.sumstats <- rbind(other.papers.mortality.sumstats, 
+                                         df.GrimAge)
 
 df.other.papers <- data.frame(
   outcome = "mortality",
@@ -155,6 +162,22 @@ plot.df[plot.df$model.type == "1st-generation model", "y.pos"] <- plot.df[plot.d
 
 plot.df[plot.df$set == "training", "y.pos"] <- plot.df[plot.df$set == "training", "y.pos"]+0.125/2
 plot.df[plot.df$set == "test", "y.pos"] <- plot.df[plot.df$set == "test", "y.pos"]-0.125/2
+
+# Since GrimAge and Oh et al. conventional have more or less the same HR/unit sd, we also shift these a bit higher and lower
+plot.df[plot.df$model.type == "GrimAge", "y.pos"] <- plot.df[plot.df$model.type == "GrimAge", "y.pos"]+0.125/2
+plot.df[(plot.df$model.type == "Oh et al. (2023)") & (plot.df$organ == "Conventional"), "y.pos"] <- plot.df[(plot.df$model.type == "Oh et al. (2023)") & (plot.df$organ == "Conventional"), "y.pos"]-0.125/2
+
+# plot.df$model.type[plot.df$model.type == "1st-generation model"] <- "1st-generation model\n(UK Biobank)"
+# plot.df$model.type[plot.df$model.type == "Mortality-based model"] <- "Mortality-based model\n(UK Biobank)"
+# plot.df$model.type[plot.df$model.type == "Oh et al. (2023)"] <- "Oh et al. (2023)\n(LonGenity cohort)"
+# plot.df$model.type[plot.df$model.type == "GrimAge"] <- "GrimAge\n(Framingham Heart Study)"
+# 
+# plot.df$model.type <- factor(plot.df$model.type, levels = c(
+#   "1st-generation model\n(UK Biobank)",
+#   "Mortality-based model\n(UK Biobank)",
+#   "Oh et al. (2023)\n(LonGenity cohort)",
+#   "GrimAge\n(Framingham Heart Study)"
+# ))
 
 plot.df$model.type <- factor(plot.df$model.type, levels = c(
   "1st-generation model",
@@ -219,7 +242,3 @@ HR.plot.mortality.other.papers <- ggplot_gtable(ggplot_build(
 attr(HR.plot.mortality.other.papers, "data") <- plot.df
 
 plot(HR.plot.mortality.other.papers)
-
-
-
-
