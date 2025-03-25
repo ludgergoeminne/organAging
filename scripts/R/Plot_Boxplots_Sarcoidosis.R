@@ -5,6 +5,7 @@ coefficients.longitudinal <- readRDS(file = paste0(rds.dir, "coefficients_longit
 ### This comes from Plot_Barplots_Correlations.R ###
 organ.proteins.selected <- readRDS(file = paste0(rds.dir, "organ_proteins_selected.rds"))
 
+# Download the dict.tsv file here: https://www.ncbi.xyz/geo/query/acc.cgi?acc=GPL29882
 dict <- read.table(paste0(input.GSE169148.dir, "dict.tsv"), sep = "\t", header = TRUE, comment.char = "")
 
 filenames <- paste0(input.GSE169148.dir, "GSE169148_series_matrix.txt.gz")
