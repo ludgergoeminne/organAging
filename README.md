@@ -47,7 +47,7 @@ The Excel files that from the Data S1 file were assembled with the scripts in fi
 
 ## How to apply the organ-specific models to your own dataset
 
-We have created a generic example script in `[Example_Script.R](https://github.com/ludgergoeminne/organAging/blob/main/scripts/R/Example_Script.R)`.
+We have created a generic example script in [Example_Script.R](https://github.com/ludgergoeminne/organAging/blob/main/scripts/R/Example_Script.R).
 The best approach depends on the type of data you are using.
 
 ### 1. Olink Explore 3072 data
