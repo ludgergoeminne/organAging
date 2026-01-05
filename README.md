@@ -103,6 +103,16 @@ mortality.in.years <- (-avg.rel.log.mort.hazard+unlist(predicted.ages.oof$gen2$p
 
 For the conventional mortality-based model, this results in most biological ages between 40 and 70, as expected, with only a tiny fraction of people (probably those with very severe, deadly diseases) predicted older than 120 years old, based on mortality.
 
+## License
+
+This software is released under an Academic Non-Commercial License.
+
+It is free for academic and research use, including modification and redistribution, for non-commercial purposes only.
+Proper attribution to the associated publication is required.
+Commercial or industry use requires a separate paid license.
+For commercial licensing inquiries, please contact the authors or the relevant technology transfer office.
+See the LICENSE file for full terms.
+
 ## Help
 
 If anything is unclear or does not work, please do not hesitate to contact lgoeminne@bwh.harvard.edu or raise an issue on GitHub.
